@@ -1,8 +1,19 @@
 # WHMCS Shamsi Date
 
-افزونه شمسی‌ساز برای WHMCS 9 به بالا. این افزونه تاریخ‌های میلادی قابل تشخیص را در ناحیه کاربری و پنل مدیریت به تاریخ جلالی تبدیل می‌کند، بدون تغییر دیتابیس یا فایل‌های اصلی WHMCS.
+افزونه شمسی‌ساز و درگاه زرین‌پال برای WHMCS 9 به بالا. این پروژه بدون تغییر دیتابیس یا فایل‌های اصلی WHMCS نصب می‌شود و شامل دو بخش مستقل است:
+
+- شمسی‌سازی تاریخ‌های WHMCS در ناحیه کاربری و پنل مدیریت
+- درگاه پرداخت زرین‌پال با پشتیبانی از live و sandbox کنار هم
 
 ## نصب
+
+1. فایل release را از بخش GitHub Releases دانلود و extract کنید.
+2. پوشه `modules` را داخل ریشه WHMCS کپی کنید.
+3. در WHMCS به `System Settings > Addon Modules` بروید.
+4. ماژول `شمسی‌ساز کامل WHMCS` را فعال کنید.
+5. در صورت نیاز به درگاه، از مسیر `System Settings > Payment Gateways` گزینه‌های `Zarinpal` و/یا `Zarinpal Sandbox` را فعال کنید.
+
+## نصب فقط شمسی‌ساز
 
 1. پوشه `modules/addons/shamsi_date` را داخل ریشه WHMCS کپی کنید.
 2. در WHMCS به `System Settings > Addon Modules` بروید.
@@ -18,6 +29,13 @@
 - پشتیبانی از ارقام فارسی، انگلیسی و عربی
 - پشتیبانی از محتوای Ajax با `MutationObserver`
 - عدم تبدیل فرم‌ها به‌صورت پیش‌فرض برای جلوگیری از اختلال در فیلترها و date pickerها
+
+## فایل‌های شمسی‌ساز
+
+- `modules/addons/shamsi_date/shamsi_date.php`
+- `modules/addons/shamsi_date/hooks.php`
+- `modules/addons/shamsi_date/lib/ShamsiDateConverter.php`
+- `modules/addons/shamsi_date/assets/shamsi-date.js`
 
 ## جلوگیری از تبدیل یک بخش
 
@@ -57,3 +75,23 @@
 - `Amount Multiplier`: ضریب تبدیل مبلغ WHMCS به واحد ارسالی زرین‌پال
 
 اگر واحد پول WHMCS شما تومان است، مقدار پیش‌فرض `IRT` و ضریب `1` مناسب است. اگر می‌خواهید به زرین‌پال ریال بفرستید و WHMCS شما تومان است، `IRR` و ضریب `10` بگذارید.
+
+## Callbackهای زرین‌پال
+
+Callbackها به‌صورت خودکار ساخته می‌شوند و نیازی به تنظیم دستی ندارند:
+
+- Live: `modules/gateways/callback/zarinpal.php`
+- Sandbox: `modules/gateways/callback/zarinpal_sandbox.php`
+
+برای امنیت، اطلاعات مهم callback مثل شماره فاکتور، مبلغ، واحد پول و حالت live/sandbox با HMAC امضا می‌شوند.
+
+## نیازمندی‌ها
+
+- WHMCS 9 یا بالاتر
+- PHP سازگار با WHMCS 9
+- فعال بودن افزونه PHP cURL برای درگاه زرین‌پال
+- دسترسی HTTPS عمومی برای callback درگاه پرداخت
+
+## Release
+
+نسخه `v1.1.0` شامل شمسی‌ساز کامل WHMCS و درگاه زرین‌پال live/sandbox است.
