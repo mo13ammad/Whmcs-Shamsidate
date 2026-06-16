@@ -34,3 +34,26 @@
 ```smarty
 {$shamsiToday}
 ```
+
+## درگاه زرین‌پال
+
+این پروژه درگاه پرداخت زرین‌پال را هم دارد:
+
+- `modules/gateways/zarinpal.php`
+- `modules/gateways/zarinpal_sandbox.php`
+- `modules/gateways/callback/zarinpal.php`
+- `modules/gateways/callback/zarinpal_sandbox.php`
+- `modules/gateways/zarinpal/lib/ZarinpalClient.php`
+
+برای فعال‌سازی، فایل‌ها را در ریشه WHMCS قرار دهید و از مسیر `System Settings > Payment Gateways` درگاه `Zarinpal` را فعال کنید.
+
+اگر می‌خواهید درگاه تست و درگاه اصلی کنار هم باشند، هر دو گزینه `Zarinpal` و `Zarinpal Sandbox` را فعال کنید. `Zarinpal Sandbox` همیشه به `sandbox.zarinpal.com` وصل می‌شود؛ `Zarinpal` هم خودش گزینه `Sandbox Mode` دارد.
+
+تنظیمات مهم:
+
+- `Merchant ID`: کد پذیرنده زرین‌پال
+- `Sandbox Mode`: ارسال درخواست‌ها به `sandbox.zarinpal.com`
+- `Zarinpal Currency`: مقدار `IRT` برای تومان یا `IRR` برای ریال
+- `Amount Multiplier`: ضریب تبدیل مبلغ WHMCS به واحد ارسالی زرین‌پال
+
+اگر واحد پول WHMCS شما تومان است، مقدار پیش‌فرض `IRT` و ضریب `1` مناسب است. اگر می‌خواهید به زرین‌پال ریال بفرستید و WHMCS شما تومان است، `IRR` و ضریب `10` بگذارید.

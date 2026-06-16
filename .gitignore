@@ -4,6 +4,9 @@ Thumbs.db
 *.log
 *.tmp
 *.bak
+*.zip
+*.tar
+*.tar.gz
 *.swp
 *.swo
 
